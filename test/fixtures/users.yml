@@ -2,12 +2,14 @@
 
 one:
   uid: MyString
+  email: MyString
   nickname: MyString
   name: MyString
   image: MyString
 
 two:
   uid: MyString
+  email: MyString
   nickname: MyString
   name: MyString
   image: MyString
