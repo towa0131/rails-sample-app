@@ -6,4 +6,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       ENV['TWITTER_API_KEY'],
       ENV['TWITTER_API_SECRET'] 
   end
-  OmniAuth.config.allowed_request_methods = %i[get]
+  OmniAuth.config.allowed_request_methods = %i[get, post]

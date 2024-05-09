@@ -1,2 +1,17 @@
-<%= link_to "Googleでログイン", "/auth/google_oauth2", method: :post %>
-<%= link_to "Twitterでログイン", "/auth/twitter", method: :post %>
+<div class="ui container center aligned">
+  <div class="ui fluid card">
+    <div class="content">
+      <h2 class="ui huge header">Login</h2>
+      <div class="ui divider"></div>
+      <div class="ui vertical buttons">
+        <%= button_to "/auth/google_oauth2", class: "ui huge red basic button active", method: :post, data: { turbo: false } do %>
+          <i class="fa-brands fa-google"></i> Login with Google
+        <% end %>
+        <div class="ui hidden divider"></div>
+        <%= button_to "/auth/twitter", class: "ui huge black basic button active", method: :post, data: { turbo: false } do %>
+          <i class="fa-brands fa-x-twitter"></i> Login with X
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
