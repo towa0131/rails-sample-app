@@ -1,8 +1,44 @@
 <header class="header">
-  <% if logged_in %>
-    <%= link_to 'ログアウト', logout_path %>
-  <% else %>
-    <%= link_to "Googleでログイン", "/auth/google_oauth2", method: :post %>
-    <%= link_to "Twitterでログイン", "/auth/twitter", method: :post %>
-  <% end %>
+  <div class="ui secondary menu pointing siteHeader">
+    <div class="ui container">
+      <% if logged_in %>
+        <div class="left menu">
+          <a href=<%= root_url %> class="active item">
+            <i class="icon home"></i>
+            Home
+          </a>
+        </div>
+      <% end %>
+      <!--
+      <a href="#" class="item">
+        <img class="ui avatar image centered circular" src="logo.png" alt="">
+      </a>
+      -->
+      <div class="right menu">
+        <% if logged_in %>
+          <div class="item">
+            <div class="ui search">
+              <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search">
+                <i class="search icon"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+          </div>
+          <a href=<%= profile_path %> class="item">
+            <img class="ui mini image centered circular" src=<%= current_user.image %> alt="">
+          </a>
+          <div class="ui item">
+            <%= button_to 'Logout', logout_path, method: :get, class: "ui negative button circular"%>
+          </div>
+        <% else %>
+          <div class="ui item">
+            <%= button_to 'Login', login_path, method: :get, class: "ui primary button circular"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </header>
+
+<div class="ui hidden divider"></div>

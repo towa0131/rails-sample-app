@@ -1,6 +1,7 @@
 <% if logged_in %>
-  <h1>ホーム</h1>
-  <h4>こんにちは，<%= current_user.name %>さん</h4>
+  <div class="ui container">
+    <h2 class="ui header">Home</h2>
+  </div>
 <% else %>
-  <h4>ログインしてください</h4>
+  <h4><a href=<%= login_path %>>ログイン</a>してください</h4>
 <% end %>

@@ -1,0 +1,21 @@
+<div class="ui container">
+  <div class="ui fluid card">
+      <div class="content">
+          <h4 class="ui huge header horizontal">
+            <img class="ui avatar image centered circular" src=<%= current_user.image %> />
+            <button class="ui primary button circular right floated">Edit profile</button>
+          </h4>
+          <div class="header"><%= current_user.nickname %></div>
+          <div class="extra">
+            @<%= current_user.uid %>
+          </div>
+      </div>
+  </div>
+
+  <a href=<%= root_url %>>
+    <button class="ui primary button circular right floated">
+      <i class="icon arrow left"></i>
+      Back to Home
+    </button>
+  </a>
+</div>
