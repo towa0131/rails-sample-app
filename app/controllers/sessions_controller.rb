@@ -16,13 +16,20 @@ class SessionsController < ApplicationController
         # Google
         image_url = auth_hash[:info][:image]
       end
+
+      vid = SecureRandom.uuid_v7.gsub!("-", "")
+      while User.exists?(vid: vid) do
+        vid = SecureRandom.uuid_v7.gsub!("-", "")
+      end
       
       new_user = User.new(
         uid: auth_hash[:uid], 
         nickname: auth_hash[:info][:name], 
         name: auth_hash[:info][:name],
         image: image_url,
-        email: auth_hash[:info][:email]
+        email: auth_hash[:info][:email],
+        bio: "",
+        vid: vid
       )
       if new_user.save 
         log_in(new_user) 

@@ -3,9 +3,14 @@
     <div class="ui container">
       <% if logged_in %>
         <div class="left menu">
-          <a href=<%= root_url %> class="active item">
+          <a href=<%= root_url %> class="item">
             <i class="icon home"></i>
             Home
+          </a>
+
+          <a href=<%= users_path %> class="item">
+            <i class="icon users"></i>
+            Users
           </a>
         </div>
       <% end %>
@@ -25,7 +30,7 @@
               <div class="results"></div>
             </div>
           </div>
-          <a href=<%= profile_path %> class="item">
+          <a href=<%= "/#{current_user.vid}" %> class="item">
             <img class="ui mini image centered circular" src=<%= current_user.image %> alt="">
           </a>
           <div class="ui item">

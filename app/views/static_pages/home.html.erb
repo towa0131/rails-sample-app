@@ -1,6 +1,29 @@
 <% if logged_in %>
   <div class="ui container">
-    <h2 class="ui header">Home</h2>
+    <%= form_with(model: @new_post, class: "ui form") do |f| %>
+    <div class="ui fluid card">
+      <div class="content">
+        <h4 class="ui medium header horizontal">
+          <img class="ui avatar image centered circular" src=<%= current_user.image %> />
+          <%= current_user.nickname %>
+        </h4>
+        <div class="field">
+          <%= f.text_area :content, placeholder: "Compose new post..." %>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui right aligned container">
+          <%= f.submit "Post", class: "ui button circular primary basic" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="ui divider"></div>
+
+    <h2 class="ui header">All Posts</h2>
+    <% @posts.each do |post| %>
+      <%= render "layouts/post", post: post %>
+    <% end %>
   </div>
 <% else %>
   <h4><a href=<%= login_path %>>ログイン</a>してください</h4>

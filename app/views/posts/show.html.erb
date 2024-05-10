@@ -1,0 +1,9 @@
+<div> 
+  <%= image_tag @user.image, size: '120x120'%><%= @user.name %>@<%= @user.nickname%> 
+  <hr> 
+  <% if @posts %> 
+    <% @posts.each do |post| %> 
+      <%= render "layouts/post", post: post %> 
+    <% end %> 
+  <% end %> 
+</div> 

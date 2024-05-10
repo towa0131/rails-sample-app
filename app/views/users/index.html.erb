@@ -1,0 +1,11 @@
+<div class="ui container">
+  <h2 class="ui header">All Users</h2>
+  <% @users.each do |user| %> 
+    <div class="ui fluid card">
+      <div class="content">
+        <div><%= image_tag user.image,size: "60x60" %><%= link_to "#{user.name} @#{user.vid}" ,"/#{user.vid}"%></div> 
+        <hr> 
+      </div>
+    </div>
+  <%end%> 
+</div>

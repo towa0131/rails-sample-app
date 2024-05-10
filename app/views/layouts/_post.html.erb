@@ -1,0 +1,28 @@
+<% if post.user %>
+  <div class="ui fluid card">
+    <div class="content">
+      <h4 class="ui medium header horizontal">
+        <a href=<%= "/#{post.user.vid}" %> class="item">
+          <img class="ui avatar image centered circular" src=<%= post.user.image %> />
+        </a>
+        <%= post.user.nickname %>
+      </h4>
+      
+      <div class="description">
+        <%= post.content %>
+      </div>
+      <div class="ui divider"></div>
+      <div class="ui horizontal">
+        <div class="meta">
+          @<%= post.user.vid %>
+          <%= post.created_at %>
+          <% if post.user_id == current_user.id %> 
+            <%= link_to "/posts/#{post.id}", class: "ui right floated", data: { turbo_method: :delete } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

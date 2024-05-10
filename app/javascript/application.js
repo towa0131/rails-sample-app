@@ -8,3 +8,10 @@ import "semantic-ui"
 $(document).on('turbo:load', function () {
   $('.ui.dropdown').dropdown();
 })
+
+$('.ui.card.fadein')
+  .transition({
+    animation : 'fade in',
+    duration  : 1000
+  })
+;
