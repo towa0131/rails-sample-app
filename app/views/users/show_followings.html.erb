@@ -1,0 +1,6 @@
+<div class="ui container">
+  <h2 class="ui header"><%= @user.nickname %>'s Followings</h2>
+  <% @followings.each do |following| %> 
+    <%= render "layouts/user", user: following %>
+  <% end %> 
+</div>

@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get '/:vid', to: 'users#show'
+  get '/:vid/followers', to: 'users#show_followers'
+  get '/:vid/followings', to: 'users#show_followings'
   get 'users/show'
   get 'users/index', as: 'users'
+  
 
   resources :posts, only: [:create, :destroy]
   resources :users, only: [:update]
+  resources :follow_relationships, only: [:create, :destroy]
 end

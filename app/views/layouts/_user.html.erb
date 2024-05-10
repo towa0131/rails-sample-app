@@ -1,0 +1,34 @@
+<div class="ui fluid card">
+  <div class="content">
+    <h4 class="ui medium header horizontal">
+      <a href=<%= "/#{user.vid}" %> class="item">
+        <img class="ui avatar image centered circular" src=<%= user.image %> />
+      </a>
+      
+      <% unless current_user.id == user.id %>
+        <% if current_user.following?(user) %>
+          <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), method: :delete, class: "right floated") do |f| %> 
+            <%= hidden_field_tag :followed_id, user.id %> 
+            <%= f.submit "Unfollow", class: "ui button circular red basic"%> 
+          <% end %>
+        <% else %>
+          <%= form_with(model: current_user.active_relationships.new, class: "right floated") do |f| %> 
+            <%= hidden_field_tag :followed_id, user.id %> 
+            <%= f.submit "Follow", class: "ui button circular primary"%> 
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= user.nickname %>
+    </h4>
+
+    <div class="meta">
+      @<%= user.vid %>
+    </div>
+
+    <div class="description">
+      <%= user.bio %>
+    </div>
+
+  </div>
+</div>

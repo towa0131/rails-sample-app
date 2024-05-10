@@ -9,11 +9,34 @@
             <img class="ui avatar image centered circular" src=<%= @user.image %> />
             <% if current_user.id == @user.id %>
               <button class="ui primary button circular right floated" id="profile">Edit profile</button>
+            <% else %>
+              <% if current_user.following?(@user) %>
+                <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), method: :delete, class: "right floated") do |f| %> 
+                  <%= hidden_field_tag :followed_id, @user.id %> 
+                  <%= f.submit "Unfollow", class: "ui button circular red basic"%> 
+                <% end %>
+              <% else %>
+                <%= form_with(model: current_user.active_relationships.new, class: "right floated") do |f| %> 
+                  <%= hidden_field_tag :followed_id, @user.id %> 
+                  <%= f.submit "Follow", class: "ui button circular primary"%> 
+                <% end %>
+              <% end %>
             <% end %>
           </h4>
           <div class="header"><%= @user.nickname %></div>
-          <div class="extra">
+          <div class="meta">
             @<%= @user.vid %>
+          </div>
+
+          <div class="description">
+            <%= @user.bio %>
+          </div>
+          
+          <div class="ui hidden divider"></div>
+
+          <div class="item">
+            <%= link_to "#{@user.followers.length} followers", "/#{@user.vid}/followers" %>
+            <%= link_to "#{@user.followings.length} following", "/#{@user.vid}/followings" %>
           </div>
       </div>
   </div>
@@ -47,7 +70,14 @@
 
         <div class="form-group">
           <%= f.label :vid, "UserID" %>
-          <%= f.text_field :vid, placeholder: "abcde" %>
+          <%= f.text_field :vid %>
+        </div>
+        
+        <div class="ui hidden divider"></div>
+
+        <div class="form-group">
+          <%= f.label :bio, "Bio" %>
+          <%= f.text_area :bio, placeholder: "Hello, World!" %>
         </div>
       </div>
       <div class="ui right aligned container">
