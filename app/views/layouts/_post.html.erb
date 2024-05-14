@@ -7,10 +7,17 @@
         </a>
         <%= post.user.nickname %>
       </h4>
+
+      <% if post.reply? %>
+        <a href=<%= "/#{post.user.vid}" %> >
+          @<%= post.user.vid %>
+        </a>
+      <% end %>
       
-      <div class="description">
+      <a href=<%= "/posts/#{post.id}" %> class="description">
         <%= post.content %>
-      </div>
+      </a>
+
       <div class="ui divider"></div>
       <div class="ui horizontal">
         <div class="meta">
@@ -21,6 +28,8 @@
               <i class="fa-solid fa-trash"></i>
             <% end %>
           <% end %>
+          <i class="fa-solid fa-reply"></i>
+          <%= post.reply_posts.length %>
         </div>
       </div>
     </div>

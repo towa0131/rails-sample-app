@@ -1,9 +1,32 @@
-<div> 
-  <%= image_tag @user.image, size: '120x120'%><%= @user.name %>@<%= @user.nickname%> 
-  <hr> 
-  <% if @posts %> 
-    <% @posts.each do |post| %> 
-      <%= render "layouts/post", post: post %> 
-    <% end %> 
-  <% end %> 
-</div> 
+<div class="ui text container">
+    <% while !@main_posts.empty? do %> 
+        <%= render 'layouts/post', post: @main_posts.pop %> 
+    <% end %>
+
+    <%= render 'layouts/post', post: @post %>
+    <% if logged_in %>
+      <%= form_with(model: @post.reply_posts.new, class: "ui form", url: {cnotroller: "posts", action: "reply"}) do |f| %>
+        <div class="ui fluid card">
+          <div class="content">
+            <h4 class="ui medium header horizontal">
+              <img class="ui avatar image centered circular" src=<%= current_user.image %> />
+              <%= current_user.nickname %>
+            </h4>
+            <%= hidden_field_tag :main_post_id, @post.id %>
+            <div class="field">
+              <%= f.text_area :content, placeholder: "Reply to @#{@post.user.vid}'s post ..." %>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui right aligned container">
+              <%= f.submit "Reply", class: "ui button circular primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <% @replies.each do |reply| %>
+        <%= render 'layouts/post', post: reply %>
+      <% end %>
+    <% end %>
+
+</div>

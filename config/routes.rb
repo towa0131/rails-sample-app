@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   get '/:vid/followings', to: 'users#show_followings'
   get 'users/show'
   get 'users/index', as: 'users'
+
+  post "/posts/reply"
   
 
-  resources :posts, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy, :show]
   resources :users, only: [:update]
   resources :follow_relationships, only: [:create, :destroy]
 end

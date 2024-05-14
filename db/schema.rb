@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_063442) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_081713) do
   create_table "follow_relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -28,6 +28,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_063442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
+  end
+
+  create_table "reply_relation_ships", force: :cascade do |t|
+    t.integer "main_post_id"
+    t.integer "reply_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_post_id"], name: "index_reply_relation_ships_on_main_post_id"
+    t.index ["reply_post_id"], name: "index_reply_relation_ships_on_reply_post_id"
   end
 
   create_table "users", force: :cascade do |t|
