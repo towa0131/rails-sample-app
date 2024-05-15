@@ -46,12 +46,14 @@
     <%= render "layouts/post", post: post %>
   <% end %>
 
-  <a href=<%= root_url %>>
-    <button class="ui primary button circular right floated">
-      <i class="icon arrow left"></i>
-      Back to Home
-    </button>
-  </a>
+  <div class="ui container right aligned">
+    <a href=<%= root_url %>>
+      <button class="ui primary button circular">
+        <i class="icon arrow left"></i>
+        Back to Home
+      </button>
+    </a>
+  </div>
 </div>
 
 <div class="ui modal">
@@ -86,3 +88,5 @@
     <% end %>
   </div>
 </div>
+
+<%= render 'layouts/footer' %>
